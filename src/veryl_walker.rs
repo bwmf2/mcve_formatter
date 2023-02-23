@@ -62,37 +62,37 @@ pub trait VerylWalker {
 
     /// Semantic action for non-terminal 'Operator05'
     fn operator05(&mut self, arg: &Operator05) {
-        self.veryl_token(&arg.operator05_token);
+        // self.veryl_token(&arg.operator05_token);
     }
 
     /// Semantic action for non-terminal 'Operator06'
     fn operator06(&mut self, arg: &Operator06) {
-        self.veryl_token(&arg.operator06_token);
+        // self.veryl_token(&arg.operator06_token);
     }
 
     /// Semantic action for non-terminal 'Operator07'
     fn operator07(&mut self, arg: &Operator07) {
-        self.veryl_token(&arg.operator07_token);
+        // self.veryl_token(&arg.operator07_token);
     }
 
     /// Semantic action for non-terminal 'Operator08'
     fn operator08(&mut self, arg: &Operator08) {
-        self.veryl_token(&arg.operator08_token);
+        // self.veryl_token(&arg.operator08_token);
     }
 
     /// Semantic action for non-terminal 'Operator09'
     fn operator09(&mut self, arg: &Operator09) {
-        self.veryl_token(&arg.operator09_token);
+        // self.veryl_token(&arg.operator09_token);
     }
 
     /// Semantic action for non-terminal 'Operator10'
     fn operator10(&mut self, arg: &Operator10) {
-        self.veryl_token(&arg.operator10_token);
+        // self.veryl_token(&arg.operator10_token);
     }
 
     /// Semantic action for non-terminal 'Operator11'
     fn operator11(&mut self, arg: &Operator11) {
-        self.veryl_token(&arg.operator11_token);
+        // self.veryl_token(&arg.operator11_token);
     }
 
     /// Semantic action for non-terminal 'UnaryOperator'
