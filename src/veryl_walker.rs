@@ -2,8 +2,6 @@ use crate::veryl_grammar_trait::*;
 use crate::veryl_token::VerylToken;
 
 pub trait VerylWalker {
-    fn empty(&mut self, _: &Empty) {}
-
     fn operator(&mut self, arg: &Operator) {
         self.veryl_token(&arg.operator_token);
     }
@@ -11,12 +9,6 @@ pub trait VerylWalker {
     fn empty_operator(&mut self, _: &Operator) {}
 
     fn veryl_token(&mut self, _arg: &VerylToken) {}
-
-    fn hierarchical_identifier(&mut self, arg: &HierarchicalIdentifier) {
-        for range in &arg.hierarchical_identifier_list {
-            self.expression(range);
-        }
-    }
 
     fn expression(&mut self, arg: &Expression) {
         self.expression01(&arg.expression01);
@@ -120,21 +112,52 @@ pub trait VerylWalker {
 
     fn factor(&mut self, arg: &Factor) {
         match arg {
-            Factor::FactorOptHierarchicalIdentifierFactorOpt0(x) => {
-                self.hierarchical_identifier(&x.hierarchical_identifier);
-                if let Some(ref x) = x.factor_opt0 {
-                    self.empty(&x.l_paren);
-                    if let Some(ref x) = x.factor_opt1 {
-                        self.expression(&****x);
-                    }
-                    self.empty(&x.r_paren);
+            Factor::A(x) => {
+                for x in x {
+                    self.expression(x);
                 }
             }
-            Factor::LParenExpressionRParen(x) => {
-                self.empty(&x.l_paren);
-                self.expression(&x.expression);
-                self.empty(&x.r_paren);
+            Factor::B(x) => {
+                for x in x {
+                    self.expression(x);
+                }
+            }
+            Factor::C(x) => {
+                for x in x {
+                    self.expression(x);
+                }
             }
         }
+        // Faster
+        // match arg {
+        //     Factor::A(x) => {
+        //         if let Some(ref x) = *x {
+        //             if let Some(ref x) = **x {
+        //                 self.expression(&**x)
+        //             }
+        //         }
+        //     }
+        //     Factor::B(x) => {
+        //         if let Some(ref x) = *x {
+        //             if let Some(ref x) = **x {
+        //                 self.expression(&**x)
+        //             }
+        //         }
+        //     }
+        //     Factor::C(x) => {
+        //         if let Some(ref x) = *x {
+        //             if let Some(ref x) = **x {
+        //                 self.expression(&**x)
+        //             }
+        //         }
+        //     }
+        //     Factor::D(x) => {
+        //         if let Some(ref x) = *x {
+        //             if let Some(ref x) = **x {
+        //                 self.expression(&**x)
+        //             }
+        //         }
+        //     }
+        // }
     }
 }

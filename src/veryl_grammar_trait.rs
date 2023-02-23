@@ -1,16 +1,3 @@
-pub struct Empty;
-
-pub struct FactorFactorOptHierarchicalIdentifierFactorOpt0 {
-    pub hierarchical_identifier: Box<HierarchicalIdentifier>,
-    pub factor_opt0: Option<Box<FactorOpt0>>,
-}
-
-pub struct FactorLParenExpressionRParen {
-    pub l_paren: Box<Empty>,
-    pub expression: Box<Expression>,
-    pub r_paren: Box<Empty>,
-}
-
 pub struct Expression {
     pub expression01: Box<Expression01>,
     pub expression_list: Vec<ExpressionList>,
@@ -134,18 +121,14 @@ pub enum Expression11OptGroup {
 }
 
 pub enum Factor {
-    FactorOptHierarchicalIdentifierFactorOpt0(FactorFactorOptHierarchicalIdentifierFactorOpt0),
-    LParenExpressionRParen(FactorLParenExpressionRParen),
-}
-
-pub struct FactorOpt0 {
-    pub l_paren: Box<Empty>,
-    pub factor_opt1: Option<Box<Box<Box<Expression>>>>,
-    pub r_paren: Box<Empty>,
-}
-
-pub struct HierarchicalIdentifier {
-    pub hierarchical_identifier_list: Vec<Box<Box<Expression>>>,
+    A(Vec<Box<Expression>>),
+    B(Vec<Box<Expression>>),
+    C(Vec<Box<Expression>>),
+    // Faster
+    // A(Option<Box<Option<Box<Expression>>>>),
+    // B(Option<Box<Option<Box<Expression>>>>),
+    // C(Option<Box<Option<Box<Expression>>>>),
+    // D(Option<Box<Option<Box<Expression>>>>),
 }
 
 pub struct Operator {
