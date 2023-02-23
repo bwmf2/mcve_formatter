@@ -6,15 +6,9 @@ use crate::veryl_grammar_trait::*;
 use crate::veryl_token::{Token, VerylToken};
 use crate::veryl_walker::VerylWalker;
 
-#[derive(Debug, Default, Clone, Copy, Eq, PartialEq, Hash)]
+#[derive(Default)]
 pub struct Location {
     pub length: usize,
-}
-
-impl From<&Token> for Location {
-    fn from(x: &Token) -> Self {
-        Self { length: x.length }
-    }
 }
 
 impl From<Token> for Location {
@@ -23,7 +17,6 @@ impl From<Token> for Location {
     }
 }
 
-#[derive(Default)]
 pub struct Align {
     width: usize,
     last_location: Option<Location>,
@@ -37,7 +30,6 @@ impl Align {
     }
 }
 
-#[derive(Default)]
 pub struct Aligner {
     aligns: [Align; 2],
 }
