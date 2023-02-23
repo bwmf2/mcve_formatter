@@ -15,16 +15,8 @@ pub trait VerylWalker {
 
     /// Semantic action for non-terminal 'HierarchicalIdentifier'
     fn hierarchical_identifier(&mut self, arg: &HierarchicalIdentifier) {
-        self.empty(&arg.identifier);
-        for x in &arg.hierarchical_identifier_list {
-            self.range(&x.range);
-        }
-        for x in &arg.hierarchical_identifier_list0 {
-            self.empty(&x.dot);
-            self.empty(&x.identifier);
-            for x in &x.hierarchical_identifier_list0_list {
-                self.range(&x.range);
-            }
+        for range in &arg.hierarchical_identifier_list {
+            self.range(range);
         }
     }
 
@@ -143,11 +135,7 @@ pub trait VerylWalker {
     /// Semantic action for non-terminal 'Factor'
     fn factor(&mut self, arg: &Factor) {
         match arg {
-            Factor::Number(x) => self.empty(&x.number),
             Factor::FactorOptHierarchicalIdentifierFactorOpt0(x) => {
-                if let Some(ref x) = x.factor_opt {
-                    self.empty(&x.dollar);
-                }
                 self.hierarchical_identifier(&x.hierarchical_identifier);
                 if let Some(ref x) = x.factor_opt0 {
                     self.empty(&x.l_paren);
@@ -168,23 +156,10 @@ pub trait VerylWalker {
     /// Semantic action for non-terminal 'FunctionCallArg'
     fn function_call_arg(&mut self, arg: &FunctionCallArg) {
         self.expression(&arg.expression);
-        for x in &arg.function_call_arg_list {
-            self.empty(&x.comma);
-            self.expression(&x.expression);
-        }
-        if let Some(ref x) = arg.function_call_arg_opt {
-            self.empty(&x.comma);
-        }
     }
 
     /// Semantic action for non-terminal 'Range'
     fn range(&mut self, arg: &Range) {
-        self.empty(&arg.l_bracket);
         self.expression(&arg.expression);
-        if let Some(ref x) = arg.range_opt {
-            self.empty(&x.range_operator);
-            self.expression(&x.expression);
-        }
-        self.empty(&arg.r_bracket);
     }
 }

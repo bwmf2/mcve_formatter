@@ -26,17 +26,6 @@ pub struct Expression11OptGroupOperator {
 }
 
 ///
-/// Type derived for production 283
-///
-/// Factor: Number;
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct FactorNumber {
-    pub number: Box<Empty>,
-}
-
-///
 /// Type derived for production 284
 ///
 /// Factor: FactorOpt /* Option */ HierarchicalIdentifier FactorOpt0 /* Option */;
@@ -44,7 +33,7 @@ pub struct FactorNumber {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct FactorFactorOptHierarchicalIdentifierFactorOpt0 {
-    pub factor_opt: Option<Box<FactorOpt>>,
+    pub factor_opt: Option<Box<FactorOpt>>, // Cannot remove it.
     pub hierarchical_identifier: Box<HierarchicalIdentifier>,
     pub factor_opt0: Option<Box<FactorOpt0>>,
 }
@@ -324,7 +313,6 @@ pub struct ExpressionList {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub enum Factor {
-    Number(FactorNumber),
     FactorOptHierarchicalIdentifierFactorOpt0(FactorFactorOptHierarchicalIdentifierFactorOpt0),
     LParenExpressionRParen(FactorLParenExpressionRParen),
 }
@@ -365,8 +353,6 @@ pub struct FactorOpt1 {
 #[derive(Debug, Clone)]
 pub struct FunctionCallArg {
     pub expression: Box<Expression>,
-    pub function_call_arg_list: Vec<FunctionCallArgList>,
-    pub function_call_arg_opt: Option<Box<FunctionCallArgOpt>>,
 }
 
 ///
@@ -380,52 +366,12 @@ pub struct FunctionCallArgList {
 }
 
 ///
-/// Type derived for non-terminal FunctionCallArgOpt
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct FunctionCallArgOpt {
-    pub comma: Box<Empty>,
-}
-
-///
 /// Type derived for non-terminal HierarchicalIdentifier
 ///
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct HierarchicalIdentifier {
-    pub identifier: Box<Empty>,
-    pub hierarchical_identifier_list: Vec<HierarchicalIdentifierList>,
-    pub hierarchical_identifier_list0: Vec<HierarchicalIdentifierList0>,
-}
-
-///
-/// Type derived for non-terminal HierarchicalIdentifierList
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct HierarchicalIdentifierList {
-    pub range: Box<Range>,
-}
-
-///
-/// Type derived for non-terminal HierarchicalIdentifierList0
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct HierarchicalIdentifierList0 {
-    pub dot: Box<Empty>,
-    pub identifier: Box<Empty>,
-    pub hierarchical_identifier_list0_list: Vec<HierarchicalIdentifierList0List>,
-}
-
-///
-/// Type derived for non-terminal HierarchicalIdentifierList0List
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct HierarchicalIdentifierList0List {
-    pub range: Box<Range>,
+    pub hierarchical_identifier_list: Vec<Box<Range>>,
 }
 
 #[derive(Debug, Clone)]
@@ -439,18 +385,5 @@ pub struct Operator {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Range {
-    pub l_bracket: Box<Empty>,
-    pub expression: Box<Expression>,
-    pub range_opt: Option<Box<RangeOpt>>,
-    pub r_bracket: Box<Empty>,
-}
-
-///
-/// Type derived for non-terminal RangeOpt
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct RangeOpt {
-    pub range_operator: Box<Empty>,
     pub expression: Box<Expression>,
 }
