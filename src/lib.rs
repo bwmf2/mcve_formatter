@@ -39,7 +39,7 @@ impl Align {
 
 #[derive(Default)]
 pub struct Aligner {
-    aligns: [Align; 7],
+    aligns: [Align; 2],
 }
 
 impl Aligner {
