@@ -10,17 +10,14 @@ pub trait VerylWalker {
 
     fn empty_operator(&mut self, _: &Operator) {}
 
-    /// Semantic action for non-terminal 'VerylToken'
     fn veryl_token(&mut self, _arg: &VerylToken) {}
 
-    /// Semantic action for non-terminal 'HierarchicalIdentifier'
     fn hierarchical_identifier(&mut self, arg: &HierarchicalIdentifier) {
         for range in &arg.hierarchical_identifier_list {
             self.range(range);
         }
     }
 
-    /// Semantic action for non-terminal 'Expression'
     fn expression(&mut self, arg: &Expression) {
         self.expression01(&arg.expression01);
         for x in &arg.expression_list {
@@ -29,7 +26,6 @@ pub trait VerylWalker {
         }
     }
 
-    /// Semantic action for non-terminal 'Expression01'
     fn expression01(&mut self, arg: &Expression01) {
         self.expression02(&arg.expression02);
         for x in &arg.expression01_list {
@@ -38,7 +34,6 @@ pub trait VerylWalker {
         }
     }
 
-    /// Semantic action for non-terminal 'Expression02'
     fn expression02(&mut self, arg: &Expression02) {
         self.expression03(&arg.expression03);
         for x in &arg.expression02_list {
@@ -47,7 +42,6 @@ pub trait VerylWalker {
         }
     }
 
-    /// Semantic action for non-terminal 'Expression03'
     fn expression03(&mut self, arg: &Expression03) {
         self.expression04(&arg.expression04);
         for x in &arg.expression03_list {
@@ -56,7 +50,6 @@ pub trait VerylWalker {
         }
     }
 
-    /// Semantic action for non-terminal 'Expression04'
     fn expression04(&mut self, arg: &Expression04) {
         self.expression05(&arg.expression05);
         for x in &arg.expression04_list {
@@ -65,7 +58,6 @@ pub trait VerylWalker {
         }
     }
 
-    /// Semantic action for non-terminal 'Expression05'
     fn expression05(&mut self, arg: &Expression05) {
         self.expression06(&arg.expression06);
         for x in &arg.expression05_list {
@@ -74,7 +66,6 @@ pub trait VerylWalker {
         }
     }
 
-    /// Semantic action for non-terminal 'Expression06'
     fn expression06(&mut self, arg: &Expression06) {
         self.expression07(&arg.expression07);
         for x in &arg.expression06_list {
@@ -83,7 +74,6 @@ pub trait VerylWalker {
         }
     }
 
-    /// Semantic action for non-terminal 'Expression07'
     fn expression07(&mut self, arg: &Expression07) {
         self.expression08(&arg.expression08);
         for x in &arg.expression07_list {
@@ -92,7 +82,6 @@ pub trait VerylWalker {
         }
     }
 
-    /// Semantic action for non-terminal 'Expression08'
     fn expression08(&mut self, arg: &Expression08) {
         self.expression09(&arg.expression09);
         for x in &arg.expression08_list {
@@ -101,7 +90,6 @@ pub trait VerylWalker {
         }
     }
 
-    /// Semantic action for non-terminal 'Expression09'
     fn expression09(&mut self, arg: &Expression09) {
         self.expression10(&arg.expression10);
         for x in &arg.expression09_list {
@@ -110,7 +98,6 @@ pub trait VerylWalker {
         }
     }
 
-    /// Semantic action for non-terminal 'Expression10'
     fn expression10(&mut self, arg: &Expression10) {
         self.expression11(&arg.expression11);
         for x in &arg.expression10_list {
@@ -119,7 +106,6 @@ pub trait VerylWalker {
         }
     }
 
-    /// Semantic action for non-terminal 'Expression11'
     fn expression11(&mut self, arg: &Expression11) {
         if let Some(ref x) = arg.expression11_opt {
             match &*x.expression11_opt_group {
@@ -132,7 +118,6 @@ pub trait VerylWalker {
         self.factor(&arg.factor);
     }
 
-    /// Semantic action for non-terminal 'Factor'
     fn factor(&mut self, arg: &Factor) {
         match arg {
             Factor::FactorOptHierarchicalIdentifierFactorOpt0(x) => {
@@ -153,12 +138,10 @@ pub trait VerylWalker {
         }
     }
 
-    /// Semantic action for non-terminal 'FunctionCallArg'
     fn function_call_arg(&mut self, arg: &FunctionCallArg) {
         self.expression(&arg.expression);
     }
 
-    /// Semantic action for non-terminal 'Range'
     fn range(&mut self, arg: &Range) {
         self.expression(&arg.expression);
     }
