@@ -14,7 +14,7 @@ pub trait VerylWalker {
 
     fn hierarchical_identifier(&mut self, arg: &HierarchicalIdentifier) {
         for range in &arg.hierarchical_identifier_list {
-            self.range(range);
+            self.expression(range);
         }
     }
 
@@ -125,7 +125,7 @@ pub trait VerylWalker {
                 if let Some(ref x) = x.factor_opt0 {
                     self.empty(&x.l_paren);
                     if let Some(ref x) = x.factor_opt1 {
-                        self.function_call_arg(&x.function_call_arg);
+                        self.expression(&****x);
                     }
                     self.empty(&x.r_paren);
                 }
@@ -136,13 +136,5 @@ pub trait VerylWalker {
                 self.empty(&x.r_paren);
             }
         }
-    }
-
-    fn function_call_arg(&mut self, arg: &FunctionCallArg) {
-        self.expression(&arg.expression);
-    }
-
-    fn range(&mut self, arg: &Range) {
-        self.expression(&arg.expression);
     }
 }

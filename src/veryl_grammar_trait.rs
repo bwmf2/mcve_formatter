@@ -16,10 +16,14 @@ pub struct FactorLParenExpressionRParen {
     pub r_paren: Box<Empty>,
 }
 
-
 pub struct Expression {
     pub expression01: Box<Expression01>,
     pub expression_list: Vec<ExpressionList>,
+}
+
+pub struct ExpressionList {
+    pub operator01: Box<Operator>,
+    pub expression01: Box<Expression01>,
 }
 
 pub struct Expression01 {
@@ -138,11 +142,6 @@ pub enum Expression11OptGroup {
     Operator04(Expression11OptGroupOperator),
 }
 
-pub struct ExpressionList {
-    pub operator01: Box<Operator>,
-    pub expression01: Box<Expression01>,
-}
-
 pub enum Factor {
     FactorOptHierarchicalIdentifierFactorOpt0(FactorFactorOptHierarchicalIdentifierFactorOpt0),
     LParenExpressionRParen(FactorLParenExpressionRParen),
@@ -154,26 +153,14 @@ pub struct FactorOpt {
 
 pub struct FactorOpt0 {
     pub l_paren: Box<Empty>,
-    pub factor_opt1: Option<Box<FactorOpt1>>,
+    pub factor_opt1: Option<Box<Box<Box<Expression>>>>,
     pub r_paren: Box<Empty>,
 }
 
-pub struct FactorOpt1 {
-    pub function_call_arg: Box<FunctionCallArg>,
-}
-
-pub struct FunctionCallArg {
-    pub expression: Box<Expression>,
-}
-
 pub struct HierarchicalIdentifier {
-    pub hierarchical_identifier_list: Vec<Box<Range>>,
+    pub hierarchical_identifier_list: Vec<Box<Box<Expression>>>,
 }
 
 pub struct Operator {
     pub operator_token: crate::veryl_token::VerylToken,
-}
-
-pub struct Range {
-    pub expression: Box<Expression>,
 }
