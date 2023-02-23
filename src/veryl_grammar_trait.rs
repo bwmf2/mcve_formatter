@@ -11,64 +11,18 @@
 #[allow(unused_imports)]
 use std::marker::PhantomData;
 
+#[allow(dead_code)]
+#[derive(Debug, Clone)]
+pub struct Empty;
+
 // -------------------------------------------------------------------------------------------------
 //
 // Output Types of productions deduced from the structure of the transformed grammar
 //
 
-///
-/// Type derived for production 277
-///
-/// Expression11OptGroup: UnaryOperator;
-///
-#[allow(dead_code)]
 #[derive(Debug, Clone)]
-pub struct Expression11OptGroupUnaryOperator {
-    pub unary_operator: Box<UnaryOperator>,
-}
-
-///
-/// Type derived for production 278
-///
-/// Expression11OptGroup: Operator09;
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Expression11OptGroupOperator09 {
-    pub operator09: Box<Operator09>,
-}
-
-///
-/// Type derived for production 279
-///
-/// Expression11OptGroup: Operator05;
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Expression11OptGroupOperator05 {
-    pub operator05: Box<Operator05>,
-}
-
-///
-/// Type derived for production 280
-///
-/// Expression11OptGroup: Operator03;
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Expression11OptGroupOperator03 {
-    pub operator03: Box<Operator03>,
-}
-
-///
-/// Type derived for production 281
-///
-/// Expression11OptGroup: Operator04;
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Expression11OptGroupOperator04 {
-    pub operator04: Box<Operator04>,
+pub struct Expression11OptGroupOperator {
+    pub operator: Box<Operator>,
 }
 
 ///
@@ -79,7 +33,7 @@ pub struct Expression11OptGroupOperator04 {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct FactorNumber {
-    pub number: Box<Number>,
+    pub number: Box<Empty>,
 }
 
 ///
@@ -103,36 +57,15 @@ pub struct FactorFactorOptHierarchicalIdentifierFactorOpt0 {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct FactorLParenExpressionRParen {
-    pub l_paren: Box<LParen>,
+    pub l_paren: Box<Empty>,
     pub expression: Box<Expression>,
-    pub r_paren: Box<RParen>,
+    pub r_paren: Box<Empty>,
 }
 
 // -------------------------------------------------------------------------------------------------
 //
 // Types of non-terminals deduced from the structure of the transformed grammar
 //
-
-///
-/// Type derived for non-terminal Comma
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Comma {}
-
-///
-/// Type derived for non-terminal Dollar
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Dollar {}
-
-///
-/// Type derived for non-terminal Dot
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Dot {}
 
 ///
 /// Type derived for non-terminal Expression
@@ -160,7 +93,7 @@ pub struct Expression01 {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Expression01List {
-    pub operator02: Box<Operator02>,
+    pub operator02: Box<Operator>,
     pub expression02: Box<Expression02>,
 }
 
@@ -180,7 +113,7 @@ pub struct Expression02 {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Expression02List {
-    pub operator03: Box<Operator03>,
+    pub operator03: Box<Operator>,
     pub expression03: Box<Expression03>,
 }
 
@@ -200,7 +133,7 @@ pub struct Expression03 {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Expression03List {
-    pub operator04: Box<Operator04>,
+    pub operator04: Box<Operator>,
     pub expression04: Box<Expression04>,
 }
 
@@ -220,7 +153,7 @@ pub struct Expression04 {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Expression04List {
-    pub operator05: Box<Operator05>,
+    pub operator05: Box<Operator>,
     pub expression05: Box<Expression05>,
 }
 
@@ -240,7 +173,7 @@ pub struct Expression05 {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Expression05List {
-    pub operator06: Box<Operator06>,
+    pub operator06: Box<Operator>,
     pub expression06: Box<Expression06>,
 }
 
@@ -260,7 +193,7 @@ pub struct Expression06 {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Expression06List {
-    pub operator07: Box<Operator07>,
+    pub operator07: Box<Operator>,
     pub expression07: Box<Expression07>,
 }
 
@@ -280,7 +213,7 @@ pub struct Expression07 {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Expression07List {
-    pub operator08: Box<Operator08>,
+    pub operator08: Box<Operator>,
     pub expression08: Box<Expression08>,
 }
 
@@ -300,7 +233,7 @@ pub struct Expression08 {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Expression08List {
-    pub operator09: Box<Operator09>,
+    pub operator09: Box<Operator>,
     pub expression09: Box<Expression09>,
 }
 
@@ -320,7 +253,7 @@ pub struct Expression09 {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Expression09List {
-    pub operator10: Box<Operator10>,
+    pub operator10: Box<Operator>,
     pub expression10: Box<Expression10>,
 }
 
@@ -340,7 +273,7 @@ pub struct Expression10 {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Expression10List {
-    pub operator11: Box<Operator11>,
+    pub operator11: Box<Operator>,
     pub expression11: Box<Expression11>,
 }
 
@@ -369,11 +302,10 @@ pub struct Expression11Opt {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub enum Expression11OptGroup {
-    UnaryOperator(Expression11OptGroupUnaryOperator),
-    Operator09(Expression11OptGroupOperator09),
-    Operator05(Expression11OptGroupOperator05),
-    Operator03(Expression11OptGroupOperator03),
-    Operator04(Expression11OptGroupOperator04),
+    Operator09(Expression11OptGroupOperator),
+    Operator05(Expression11OptGroupOperator),
+    Operator03(Expression11OptGroupOperator),
+    Operator04(Expression11OptGroupOperator),
 }
 
 ///
@@ -382,7 +314,7 @@ pub enum Expression11OptGroup {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct ExpressionList {
-    pub operator01: Box<Operator01>,
+    pub operator01: Box<Operator>,
     pub expression01: Box<Expression01>,
 }
 
@@ -403,7 +335,7 @@ pub enum Factor {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct FactorOpt {
-    pub dollar: Box<Dollar>,
+    pub dollar: Box<Empty>,
 }
 
 ///
@@ -412,9 +344,9 @@ pub struct FactorOpt {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct FactorOpt0 {
-    pub l_paren: Box<LParen>,
+    pub l_paren: Box<Empty>,
     pub factor_opt1: Option<Box<FactorOpt1>>,
-    pub r_paren: Box<RParen>,
+    pub r_paren: Box<Empty>,
 }
 
 ///
@@ -443,7 +375,7 @@ pub struct FunctionCallArg {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct FunctionCallArgList {
-    pub comma: Box<Comma>,
+    pub comma: Box<Empty>,
     pub expression: Box<Expression>,
 }
 
@@ -453,7 +385,7 @@ pub struct FunctionCallArgList {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct FunctionCallArgOpt {
-    pub comma: Box<Comma>,
+    pub comma: Box<Empty>,
 }
 
 ///
@@ -462,7 +394,7 @@ pub struct FunctionCallArgOpt {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct HierarchicalIdentifier {
-    pub identifier: Box<Identifier>,
+    pub identifier: Box<Empty>,
     pub hierarchical_identifier_list: Vec<HierarchicalIdentifierList>,
     pub hierarchical_identifier_list0: Vec<HierarchicalIdentifierList0>,
 }
@@ -482,8 +414,8 @@ pub struct HierarchicalIdentifierList {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct HierarchicalIdentifierList0 {
-    pub dot: Box<Dot>,
-    pub identifier: Box<Identifier>,
+    pub dot: Box<Empty>,
+    pub identifier: Box<Empty>,
     pub hierarchical_identifier_list0_list: Vec<HierarchicalIdentifierList0List>,
 }
 
@@ -496,149 +428,9 @@ pub struct HierarchicalIdentifierList0List {
     pub range: Box<Range>,
 }
 
-///
-/// Type derived for non-terminal Identifier
-///
-#[allow(dead_code)]
 #[derive(Debug, Clone)]
-pub struct Identifier {}
-
-///
-/// Type derived for non-terminal LBracket
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct LBracket {}
-
-///
-/// Type derived for non-terminal LParen
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct LParen {
-    pub l_paren_token: crate::veryl_token::VerylToken,
-}
-
-///
-/// Type derived for non-terminal Number
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub enum Number {}
-
-///
-/// Type derived for non-terminal Operator01
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Operator01 {
-    pub operator01_token: crate::veryl_token::VerylToken,
-}
-
-///
-/// Type derived for non-terminal Operator02
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Operator02 {
-    pub operator02_token: crate::veryl_token::VerylToken,
-}
-
-///
-/// Type derived for non-terminal Operator03
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Operator03 {
-    pub operator03_token: crate::veryl_token::VerylToken,
-}
-
-///
-/// Type derived for non-terminal Operator04
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Operator04 {
-    pub operator04_token: crate::veryl_token::VerylToken,
-}
-
-///
-/// Type derived for non-terminal Operator05
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Operator05 {
-    pub operator05_token: crate::veryl_token::VerylToken,
-}
-
-///
-/// Type derived for non-terminal Operator06
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Operator06 {
-    pub operator06_token: crate::veryl_token::VerylToken,
-}
-
-///
-/// Type derived for non-terminal Operator07
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Operator07 {
-    pub operator07_token: crate::veryl_token::VerylToken,
-}
-
-///
-/// Type derived for non-terminal Operator08
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Operator08 {
-    pub operator08_token: crate::veryl_token::VerylToken,
-}
-
-///
-/// Type derived for non-terminal Operator09
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Operator09 {
-    pub operator09_token: crate::veryl_token::VerylToken,
-}
-
-///
-/// Type derived for non-terminal Operator10
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Operator10 {
-    pub operator10_token: crate::veryl_token::VerylToken,
-}
-
-///
-/// Type derived for non-terminal Operator11
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct Operator11 {
-    pub operator11_token: crate::veryl_token::VerylToken,
-}
-
-///
-/// Type derived for non-terminal RBracket
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct RBracket {}
-
-///
-/// Type derived for non-terminal RParen
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct RParen {
-    pub r_paren_token: crate::veryl_token::VerylToken,
+pub struct Operator {
+    pub operator_token: crate::veryl_token::VerylToken,
 }
 
 ///
@@ -647,18 +439,11 @@ pub struct RParen {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Range {
-    pub l_bracket: Box<LBracket>,
+    pub l_bracket: Box<Empty>,
     pub expression: Box<Expression>,
     pub range_opt: Option<Box<RangeOpt>>,
-    pub r_bracket: Box<RBracket>,
+    pub r_bracket: Box<Empty>,
 }
-
-///
-/// Type derived for non-terminal RangeOperator
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub enum RangeOperator {}
 
 ///
 /// Type derived for non-terminal RangeOpt
@@ -666,15 +451,6 @@ pub enum RangeOperator {}
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct RangeOpt {
-    pub range_operator: Box<RangeOperator>,
+    pub range_operator: Box<Empty>,
     pub expression: Box<Expression>,
-}
-
-///
-/// Type derived for non-terminal UnaryOperator
-///
-#[allow(dead_code)]
-#[derive(Debug, Clone)]
-pub struct UnaryOperator {
-    pub unary_operator_token: crate::veryl_token::VerylToken,
 }
