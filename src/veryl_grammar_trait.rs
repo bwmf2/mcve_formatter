@@ -109,7 +109,7 @@ pub struct Expression10List {
 }
 
 pub struct Expression11 {
-    pub expression11_opt: Option<Box<Box<Expression11OptGroup>>>,
+    pub expression11_opt: Box<Expression11OptGroup>,
     pub factor: Box<Factor>,
 }
 

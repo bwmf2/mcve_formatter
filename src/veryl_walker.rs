@@ -99,13 +99,11 @@ pub trait VerylWalker {
     }
 
     fn expression11(&mut self, arg: &Expression11) {
-        if let Some(ref x) = arg.expression11_opt {
-            match &***x {
-                Expression11OptGroup::Operator03(x) => self.operator(&**x),
-                Expression11OptGroup::Operator04(x) => self.operator(&**x),
-                Expression11OptGroup::Operator05(x) => self.operator(&**x),
-                Expression11OptGroup::Operator09(x) => self.operator(&**x),
-            }
+        match &*arg.expression11_opt {
+            Expression11OptGroup::Operator03(x) => self.operator(&*x),
+            Expression11OptGroup::Operator04(x) => self.operator(&*x),
+            Expression11OptGroup::Operator05(x) => self.operator(&*x),
+            Expression11OptGroup::Operator09(x) => self.operator(&*x),
         }
         self.factor(&arg.factor);
     }
