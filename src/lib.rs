@@ -6,7 +6,6 @@ use crate::veryl_grammar_trait::*;
 use crate::veryl_token::{Token, VerylToken};
 use crate::veryl_walker::VerylWalker;
 
-#[derive(Default)]
 pub struct Location {
     pub length: usize,
 }
@@ -25,6 +24,7 @@ pub struct Align {
 impl Align {
     fn token(&mut self, x: &VerylToken) {
         self.width += x.token.length;
+        // let loc = Location { length: x.token.length };
         let loc: Location = x.token.into();
         self.last_location = Some(loc);
     }

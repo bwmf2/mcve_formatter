@@ -1,11 +1,6 @@
 pub struct Empty;
 
-pub struct Expression11OptGroupOperator {
-    pub operator: Box<Operator>,
-}
-
 pub struct FactorFactorOptHierarchicalIdentifierFactorOpt0 {
-    pub factor_opt: Option<Box<FactorOpt>>, // Cannot remove it.
     pub hierarchical_identifier: Box<HierarchicalIdentifier>,
     pub factor_opt0: Option<Box<FactorOpt0>>,
 }
@@ -127,28 +122,20 @@ pub struct Expression10List {
 }
 
 pub struct Expression11 {
-    pub expression11_opt: Option<Box<Expression11Opt>>,
+    pub expression11_opt: Option<Box<Box<Expression11OptGroup>>>,
     pub factor: Box<Factor>,
 }
 
-pub struct Expression11Opt {
-    pub expression11_opt_group: Box<Expression11OptGroup>,
-}
-
 pub enum Expression11OptGroup {
-    Operator09(Expression11OptGroupOperator),
-    Operator05(Expression11OptGroupOperator),
-    Operator03(Expression11OptGroupOperator),
-    Operator04(Expression11OptGroupOperator),
+    Operator09(Box<Operator>),
+    Operator05(Box<Operator>),
+    Operator03(Box<Operator>),
+    Operator04(Box<Operator>),
 }
 
 pub enum Factor {
     FactorOptHierarchicalIdentifierFactorOpt0(FactorFactorOptHierarchicalIdentifierFactorOpt0),
     LParenExpressionRParen(FactorLParenExpressionRParen),
-}
-
-pub struct FactorOpt {
-    pub dollar: Box<Empty>,
 }
 
 pub struct FactorOpt0 {
